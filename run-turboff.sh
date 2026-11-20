@@ -55,7 +55,7 @@ fi
 cd "$(dirname "$0")" || exit 2
 log="$PWD/turboff-$(date +%Y%m%d-%H%M%S).log"
 echo "Starting TurboFieldfareServer: $model.gturbo, context $context, $host:$port"
-nohup "$server" --model "$dir" --host "$host" --port "$port" --max-context "$context" \
+nohup "$server" --early-expert-read router --prefill-chunk-tokens 256 --expert-cache-slots 32 --model "$dir" --host "$host" --port "$port" --max-context "$context" \
     --accept-any-model </dev/null >"$log" 2>&1 &
 pid=$!
 echo "pid $pid, log $log"
